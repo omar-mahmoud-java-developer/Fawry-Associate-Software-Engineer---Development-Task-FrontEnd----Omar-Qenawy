@@ -1,0 +1,80 @@
+<div class="bg-gradient-to-br from-purple-600 to-blue-500 min-h-screen p-8">
+    <div class="container mx-auto mt-20">
+        <!-- Movie List Container -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-white/20">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Movie Card -->
+                <div 
+                    *ngFor="let movie of movies" 
+                    class="group relative bg-white/10 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-300">
+                    
+                    <!-- Image with Gradient Overlay -->
+                    <div class="relative h-64 overflow-hidden">
+                        <img 
+                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" 
+                            [src]="movie.posterUrl" 
+                            alt="Poster of {{movie.title}}">
+                        <div class="absolute inset-0 bg-gradient-to-t from-purple-600/60 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4">
+                            <h3 class="text-xl font-bold text-white drop-shadow-lg">
+                                {{movie.title}}
+                            </h3>
+                            <p class="text-purple-200 text-sm">{{movie.releaseYear}}</p>
+                        </div>
+                    </div>
+
+                    <!-- Movie Details -->
+                    <div class="p-4 space-y-3">
+                        <!-- Director and Studio -->
+                        <div class="space-y-2">
+                            <p class="text-purple-200 flex items-center space-x-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                                </svg>
+                                <span class="font-semibold text-white/90">{{movie.director}}</span>
+                            </p>
+                            <p class="text-purple-200 flex items-center space-x-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                </svg>
+                                <span class="text-white/90">{{movie.studio}}</span>
+                            </p>
+                        </div>
+
+             
+                        <!-- Cast Tags -->
+                        <div class="flex flex-wrap gap-2">
+                            <span 
+                                *ngFor="let cast of movie.movieCast" 
+                                class="px-3 py-1 bg-purple-400/20 rounded-full text-sm text-purple-100 hover:bg-purple-400/30 transition-colors duration-200">
+                                {{cast}}
+                            </span>
+                        </div>
+                        <button 
+                        (click)="viewDetails(movie)" 
+                        class="w-full bg-gradient-to-r from-teal-400 to-cyan-500 hover:from-teal-500 hover:to-cyan-600 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-200 shadow hover:shadow-lg mt-2">
+                        View Details
+                    </button>
+
+                        <!-- Admin Buttons -->
+                        <div *ngIf="isAdmin()" class="space-y-2 mt-4">
+                            <button 
+                                (click)="update(movie)" 
+                                class="w-full bg-gradient-to-r from-purple-400 to-blue-400 hover:from-purple-500 hover:to-blue-500 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-200 shadow hover:shadow-lg">
+                                Update
+                            </button>
+                            <button 
+                                (click)="delete(movie)" 
+                                class="w-full bg-gradient-to-r from-red-400 to-pink-500 hover:from-red-500 hover:to-pink-600 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-200 shadow hover:shadow-lg">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- End of Movie Card -->
+            </div>
+        </div>
+
+
+</div>

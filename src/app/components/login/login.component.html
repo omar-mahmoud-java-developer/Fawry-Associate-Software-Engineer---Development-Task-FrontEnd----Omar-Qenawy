@@ -1,0 +1,113 @@
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-600 to-blue-500 p-4">
+  <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-xl w-full max-w-md p-8 border border-white/20">
+      <!-- Animated Header -->
+      <div class="flex flex-col items-center mb-8 space-y-2">
+          <div class="p-3 bg-white/10 rounded-full">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+              </svg>
+          </div>
+          <h1 class="text-3xl font-bold bg-gradient-to-r from-purple-200 to-blue-200 bg-clip-text text-transparent">
+              Welcome Back
+          </h1>
+          <p class="text-white/80 text-sm">Please sign in to continue</p>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="login()" class="space-y-6">
+          <!-- Notification -->
+          <div *ngIf="inlineNotification.show" class="p-3 rounded-lg bg-red-100/80 flex items-center space-x-2 animate-fade-in">
+              <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-red-600 text-sm">{{ inlineNotification.text }}</span>
+          </div>
+
+          <!-- Email Input -->
+          <div class="space-y-2">
+              <div class="relative">
+                  <input 
+                      type="email" 
+                      id="email" 
+                      formControlName="email" 
+                      required
+                      class="w-full px-4 py-3 bg-white/20 backdrop-blur-sm rounded-lg border border-white/30 focus:border-purple-300 focus:ring-2 focus:ring-purple-200/50 text-white placeholder-white/60 transition-all duration-200"
+                      placeholder="Email Address">
+                  <div class="absolute inset-y-0 right-3 flex items-center">
+                      <svg class="w-5 h-5 text-white/60" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                      </svg>
+                  </div>
+              </div>
+              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-red-200 text-sm space-y-1">
+                  <div *ngIf="email.errors?.['required']">• Email is required</div>
+                  <div *ngIf="email.errors?.['email']">• Invalid email format</div>
+              </div>
+          </div>
+
+          <!-- Password Input -->
+          <div class="space-y-2">
+              <div class="relative">
+                  <input 
+                      type="password" 
+                      id="password" 
+                      formControlName="password" 
+                      required
+                      class="w-full px-4 py-3 bg-white/20 backdrop-blur-sm rounded-lg border border-white/30 focus:border-purple-300 focus:ring-2 focus:ring-purple-200/50 text-white placeholder-white/60 transition-all duration-200"
+                      placeholder="Password">
+                  <div class="absolute inset-y-0 right-3 flex items-center">
+                      <svg class="w-5 h-5 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
+                      </svg>
+                  </div>
+              </div>
+              <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-red-200 text-sm space-y-1">
+                  <div *ngIf="password.errors?.['required']">• Password is required</div>
+                  <div *ngIf="password.errors?.['minlength']">• Minimum 5 characters</div>
+              </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button 
+              type="submit" 
+              class="w-full bg-gradient-to-r from-purple-400 to-blue-400 hover:from-purple-500 hover:to-blue-500 text-white py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5">
+              Sign In
+          </button>
+
+          <!-- Links -->
+          <div class="flex items-center justify-between text-sm">
+              <a routerLink="/register" class="text-white/70 hover:text-white transition-colors duration-200">
+                  Create account
+              </a>
+              <a routerLink="/forgot-password" class="text-white/70 hover:text-white transition-colors duration-200">
+                  Forgot password?
+              </a>
+          </div>
+
+          <!-- Social Login -->
+          <div class="relative">
+              <div class="absolute inset-0 flex items-center">
+                  <div class="w-full border-t border-white/20"></div>
+              </div>
+              <div class="relative flex justify-center text-sm">
+                  <span class="px-2 bg-transparent text-white/60">Or continue with</span>
+              </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+              <button type="button" class="flex items-center justify-center space-x-2 bg-white/10 hover:bg-white/20 text-white py-2 rounded-lg transition-colors duration-200">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z"/>
+                  </svg>
+                  <span>Google</span>
+              </button>
+              <button type="button" class="flex items-center justify-center space-x-2 bg-white/10 hover:bg-white/20 text-white py-2 rounded-lg transition-colors duration-200">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M23.998 12c0-6.628-5.372-12-11.999-12C5.372 0 0 5.372 0 12c0 5.988 4.388 10.952 10.124 11.852v-8.384H7.078v-3.469h3.046V9.356c0-3.008 1.792-4.669 4.532-4.669 1.313 0 2.686.234 2.686.234v2.953H15.83c-1.49 0-1.955.925-1.955 1.874V12h3.328l-.532 3.469h-2.796v8.384c5.736-.9 10.124-5.864 10.124-11.853z"/>
+                  </svg>
+                  <span>Facebook</span>
+              </button>
+          </div>
+      </form>
+  </div>
+</div>
