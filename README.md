@@ -1,27 +1,33 @@
-# MovieApiUi
+# Movie Dashboard Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
+This project is a movie management system that allows both admin and regular users to interact with a movie database. Admin users have the ability to manage the movies, while regular users can view and explore them.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Admin Dashboard:
+- Admin users can log in to manage movies.
+- Admin users can access a dashboard that loads the movie list.
+- Admin users can add or remove movies from the database.
 
-## Code scaffolding
+### Regular User Dashboard:
+- Regular users can log in and view the full movie list.
+- Regular users can view details of each movie.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technologies Used
 
-## Build
+- **Backend**: Spring Boot (Java)
+- **Frontend**: Angular 16+
+- **Database**: MySQL
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Prerequisites
 
-## Running unit tests
+Before you begin, ensure you have the following installed:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Java 17 or later
+- MySQL
+- Node.js (for Angular development)
 
-## Running end-to-end tests
+## Installation
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Backend (Spring Boot)
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
