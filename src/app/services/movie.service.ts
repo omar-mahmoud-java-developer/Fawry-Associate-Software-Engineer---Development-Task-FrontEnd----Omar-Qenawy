@@ -41,6 +41,12 @@ export class MovieService {
             responseType: "text"
         });
     }
+
+searchMovies(title: string): Observable<MovieDto[]> {
+    return this.http.get<MovieDto[]>(`${this.BASE_URL}/api/v1/movie/search`, {
+        params: { title }
+    });
+}
 }
 
 export type MovieDto = {

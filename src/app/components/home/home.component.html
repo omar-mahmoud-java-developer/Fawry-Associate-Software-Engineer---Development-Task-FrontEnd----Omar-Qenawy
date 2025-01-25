@@ -50,12 +50,19 @@
                                 {{cast}}
                             </span>
                         </div>
-                        <button 
-                        (click)="viewDetails(movie)" 
-                        class="w-full bg-gradient-to-r from-teal-400 to-cyan-500 hover:from-teal-500 hover:to-cyan-600 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-200 shadow hover:shadow-lg mt-2">
-                        View Details
-                    </button>
 
+
+                            <!-- View Details Button -->
+            <div class="space-y-2 mt-4">
+                <button 
+                    (click)="viewDetails(movie)" 
+                    class="w-full bg-gradient-to-r from-green-400 to-teal-400 hover:from-green-500 hover:to-teal-500 text-white px-4 py-2 rounded-lg font-semibold transition-all duration-200 shadow hover:shadow-lg">
+                    View Details
+                </button>
+            </div>
+
+                          
+              
                         <!-- Admin Buttons -->
                         <div *ngIf="isAdmin()" class="space-y-2 mt-4">
                             <button 
